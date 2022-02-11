@@ -17,3 +17,5 @@
 	#Некие конфигурационные файлы
 	.terraformrc
 	terraform.rc
+
+fix
