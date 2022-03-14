@@ -1,4 +1,4 @@
-1. chdir("/tmp")
+1. Системынй вызов chdir("/tmp")
 
 2. /usr/share/misc/magic.mgc
 
