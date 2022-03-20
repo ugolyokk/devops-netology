@@ -4,92 +4,90 @@
 
 2. Не могут т.к имеют один Inode. Все изменения в правах на файле распространяются и на все хардлинки
 
-3.     default: Are you sure you want to destroy the 'default' VM? [y/N] y
-	==> default: Forcing shutdown of VM...
-	==> default: Destroying VM and associated drives...
+3.  Сделано
 
-4. 
-Disk /dev/sdb: 2.51 GiB, 2684354560 bytes, 5242880 sectors
-Disk model: VBOX HARDDISK
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disklabel type: gpt
-Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148
+4.  Сделано
+> Disk /dev/sdb: 2.51 GiB, 2684354560 bytes, 5242880 sectors </br>
+Disk model: VBOX HARDDISK </br>
+Units: sectors of 1 * 512 = 512 bytes </br>
+Sector size (logical/physical): 512 bytes / 512 bytes </br>
+I/O size (minimum/optimal): 512 bytes / 512 bytes </br>
+Disklabel type: gpt </br>
+Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148 </br>
 
-Device       Start     End Sectors  Size Type
-/dev/sdb1     2048 4196351 4194304    2G Linux filesystem
-/dev/sdb2  4196352 5242846 1046495  511M Linux filesystem
+> Device       Start     End Sectors  Size Type </br>
+/dev/sdb1     2048 4196351 4194304    2G Linux filesystem </br>
+/dev/sdb2  4196352 5242846 1046495  511M Linux filesystem </br>
 
 
-5.
-vagrant@vagrant:~$ sudo sfdisk -d /dev/sdb | sudo sfdisk /dev/sdc
-Checking that no-one is using this disk right now ... OK
+5. Сделано
+> vagrant@vagrant:~$ sudo sfdisk -d /dev/sdb | sudo sfdisk /dev/sdc </br>
+Checking that no-one is using this disk right now ... OK </br>
 
-Disk /dev/sdc: 2.51 GiB, 2684354560 bytes, 5242880 sectors
-Disk model: VBOX HARDDISK
-Units: sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disklabel type: gpt
-Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148
+> Disk /dev/sdc: 2.51 GiB, 2684354560 bytes, 5242880 sectors </br>
+Disk model: VBOX HARDDISK </br>
+Units: sectors of 1 * 512 = 512 bytes </br>
+Sector size (logical/physical): 512 bytes / 512 bytes </br>
+I/O size (minimum/optimal): 512 bytes / 512 bytes </br>
+Disklabel type: gpt </br>
+Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148 </br>
 
-Old situation:
+> Old situation: </br>
 
->>> Script header accepted.
->>> Script header accepted.
->>> Script header accepted.
->>> Script header accepted.
->>> Script header accepted.
->>> Script header accepted.
->>> Created a new GPT disklabel (GUID: 90AE81C2-B01A-E744-BA92-0760A2591148).
-/dev/sdc1: Created a new partition 1 of type 'Linux filesystem' and of size 2 GiB.
-/dev/sdc2: Created a new partition 2 of type 'Linux filesystem' and of size 511 MiB.
-/dev/sdc3: Done.
+> \>>> Script header accepted. </br>
+\>>> Script header accepted. </br>
+\>>> Script header accepted. </br>
+\>>> Script header accepted. </br>
+\>>> Script header accepted. </br>
+\>>> Script header accepted. </br>
+\>>> Created a new GPT disklabel (GUID: 90AE81C2-B01A-E744-BA92-0760A2591148). </br>
+/dev/sdc1: Created a new partition 1 of type 'Linux filesystem' and of size 2 GiB. </br>
+/dev/sdc2: Created a new partition 2 of type 'Linux filesystem' and of size 511 MiB. </br>
+/dev/sdc3: Done. </br>
 
-New situation:
-Disklabel type: gpt
-Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148
+> New situation: </br>
+Disklabel type: gpt </br>
+Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148 </br>
 
-Device       Start     End Sectors  Size Type
-/dev/sdc1     2048 4196351 4194304    2G Linux filesystem
-/dev/sdc2  4196352 5242846 1046495  511M Linux filesystem
+> Device       Start     End Sectors  Size Type </br>
+/dev/sdc1     2048 4196351 4194304    2G Linux filesystem </br>
+/dev/sdc2  4196352 5242846 1046495  511M Linux filesystem </br>
 
-The partition table has been altered.
-Calling ioctl() to re-read partition table.
-Syncing disks.
+> The partition table has been altered. </br>
+Calling ioctl() to re-read partition table. </br>
+Syncing disks. </br>
 
-6.
-vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md0 -l 1 -n 2 /dev/sdb1 /dev/sdc1
-mdadm: Note: this array has metadata at the start and
-    may not be suitable as a boot device.  If you plan to
-    store '/boot' on this device please ensure that
-    your boot-loader understands md/v1.x metadata, or use
-    --metadata=0.90
-mdadm: size set to 2094080K
-Continue creating array? y
-mdadm: Defaulting to version 1.2 metadata
-mdadm: array /dev/md0 started.
+6. Сделано
+> vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md0 -l 1 -n 2 /dev/sdb1 /dev/sdc1 </br>
+mdadm: Note: this array has metadata at the start and </br>
+    may not be suitable as a boot device.  If you plan to </br>
+    store '/boot' on this device please ensure that </br>
+    your boot-loader understands md/v1.x metadata, or use </br>
+    --metadata=0.90 </br>
+mdadm: size set to 2094080K </br>
+Continue creating array? y </br>
+mdadm: Defaulting to version 1.2 metadata </br>
+mdadm: array /dev/md0 started. </br>
 
 
-7.
-vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md1 -l 0 -n 2 /dev/sdb2 /dev/sdc2
-mdadm: chunk size defaults to 512K
-mdadm: Defaulting to version 1.2 metadata
-mdadm: array /dev/md1 started.
+7. Сделано
+> vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md1 -l 0 -n 2 /dev/sdb2 /dev/sdc2 </br>
+mdadm: chunk size defaults to 512K </br>
+mdadm: Defaulting to version 1.2 metadata </br>
+mdadm: array /dev/md1 started. </br>
 
-8.
-vagrant@vagrant:~$ sudo pvcreate /dev/md0
-  Physical volume "/dev/md0" successfully created.
-vagrant@vagrant:~$ sudo pvcreate /dev/md1
-  Physical volume "/dev/md1" successfully created.
+8. Сделано
+> vagrant@vagrant:~$ sudo pvcreate /dev/md0 </br>
+  Physical volume "/dev/md0" successfully created. </br>
+vagrant@vagrant:~$ sudo pvcreate /dev/md1 </br>
+  Physical volume "/dev/md1" successfully created. </br>
 
-9.
+9. Сделано
 
-vagrant@vagrant:~$ sudo vgcreate vg1 /dev/md0 /dev/md1
-  Volume group "vg1" successfully created
+> vagrant@vagrant:~$ sudo vgcreate vg1 /dev/md0 /dev/md1 </br>
+  Volume group "vg1" successfully created </br>
 
-vagrant@vagrant:~$ sudo vgs
+ > vagrant@vagrant:~$ sudo vgs </br>
   VG        #PV #LV #SN Attr   VSize   VFree
   ubuntu-vg   1   1   0 wz--n- <63.00g <31.50g
   vg1         2   1   0 wz--n-  <2.99g   2.89g
