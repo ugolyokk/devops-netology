@@ -21,7 +21,7 @@ Device       Start     End Sectors  Size Type
 ```
 
 5. Сделано
-vagrant@vagrant:~$ sudo sfdisk -d /dev/sdb | sudo sfdisk /dev/sdc
+``` vagrant@vagrant:~$ sudo sfdisk -d /dev/sdb | sudo sfdisk /dev/sdc
 Checking that no-one is using this disk right now ... OK
 
 Disk /dev/sdc: 2.51 GiB, 2684354560 bytes, 5242880 sectors
@@ -55,9 +55,9 @@ Device       Start     End Sectors  Size Type
 The partition table has been altered.
 Calling ioctl() to re-read partition table.
 Syncing disks.
-
+``` 
 6. Сделано
-vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md0 -l 1 -n 2 /dev/sdb1 /dev/sdc1
+``` vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md0 -l 1 -n 2 /dev/sdb1 /dev/sdc1
 mdadm: Note: this array has metadata at the start and
     may not be suitable as a boot device.  If you plan to
     store '/boot' on this device please ensure that
@@ -67,42 +67,40 @@ mdadm: size set to 2094080K
 Continue creating array? y
 mdadm: Defaulting to version 1.2 metadata
 mdadm: array /dev/md0 started.
-
+``` 
 
 7. Сделано
-vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md1 -l 0 -n 2 /dev/sdb2 /dev/sdc2
+``` vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md1 -l 0 -n 2 /dev/sdb2 /dev/sdc2
 mdadm: chunk size defaults to 512K
 mdadm: Defaulting to version 1.2 metadata
 mdadm: array /dev/md1 started.
-
+``` 
 8. Сделано
-vagrant@vagrant:~$ sudo pvcreate /dev/md0
+``` vagrant@vagrant:~$ sudo pvcreate /dev/md0
   Physical volume "/dev/md0" successfully created.
 vagrant@vagrant:~$ sudo pvcreate /dev/md1
   Physical volume "/dev/md1" successfully created.
-
+``` 
 9. Сделано
-
-vagrant@vagrant:~$ sudo vgcreate vg1 /dev/md0 /dev/md1
+``` vagrant@vagrant:~$ sudo vgcreate vg1 /dev/md0 /dev/md1
   Volume group "vg1" successfully created
 
 vagrant@vagrant:~$ sudo vgs
   VG        #PV #LV #SN Attr   VSize   VFree
   ubuntu-vg   1   1   0 wz--n- <63.00g <31.50g
   vg1         2   1   0 wz--n-  <2.99g   2.89g
-
+``` 
 10. Сделано
-vagrant@vagrant:~$ sudo lvcreate -n lv1 -L 100M vg1 /dev/md1
+``` vagrant@vagrant:~$ sudo lvcreate -n lv1 -L 100M vg1 /dev/md1
   Logical volume "lv1" created.
 
 vagrant@vagrant:~$ sudo lvs
   LV        VG        Attr       LSize   Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
   ubuntu-lv ubuntu-vg -wi-ao----  31.50g
   lv1       vg1       -wi-a----- 100.00m
-
+``` 
 11. Сделано
-
-vagrant@vagrant:~$ sudo mkfs.ext4 /dev/vg1/lv1
+``` vagrant@vagrant:~$ sudo mkfs.ext4 /dev/vg1/lv1
 mke2fs 1.45.5 (07-Jan-2020)
 Creating filesystem with 25600 4k blocks and 25600 inodes
 
@@ -110,15 +108,13 @@ Allocating group tables: done
 Writing inode tables: done
 Creating journal (1024 blocks): done
 Writing superblocks and filesystem accounting information: done
-
+``` 
 
 12. Сделано
-vagrant@vagrant:~$ sudo mount /dev/vg1/lv1 /tmp/new/
-
+``` vagrant@vagrant:~$ sudo mount /dev/vg1/lv1 /tmp/new/
+``` 
 13. Сделано
-
-
-vagrant@vagrant:~$ sudo wget http://mirror.yandex.ru/ubuntu/ls-lR.gz -O /tmp/new/test.gz
+``` vagrant@vagrant:~$ sudo wget http://mirror.yandex.ru/ubuntu/ls-lR.gz -O /tmp/new/test.gz
 --2022-03-20 18:44:11--  http://mirror.yandex.ru/ubuntu/ls-lR.gz
 Resolving mirror.yandex.ru (mirror.yandex.ru)... 213.180.204.183, 2a02:6b8::183
 Connecting to mirror.yandex.ru (mirror.yandex.ru)|213.180.204.183|:80... connected.
@@ -129,10 +125,9 @@ Saving to: ‘/tmp/new/test.gz’
 /tmp/new/test.gz                  100%[===========================================================>]  21.31M  6.91MB/s    in 3.1s
 
 2022-03-20 18:44:16 (6.91 MB/s) - ‘/tmp/new/test.gz’ saved [22343231/22343231]
-
+``` 
 14. Сделано
-
-vagrant@vagrant:~$ lsblk
+``` vagrant@vagrant:~$ lsblk
 NAME                      MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT
 loop0                       7:0    0 55.4M  1 loop  /snap/core18/2128
 loop2                       7:2    0 70.3M  1 loop  /snap/lxd/21029
@@ -157,22 +152,20 @@ sdc                         8:32   0  2.5G  0 disk
 └─sdc2                      8:34   0  511M  0 part
   └─md1                     9:1    0 1017M  0 raid0
     └─vg1-lv1             253:1    0  100M  0 lvm   /tmp/new
-
+``` 
 15. Сделано
-
-vagrant@vagrant:~$ gzip -t /tmp/new/test.gz
+``` vagrant@vagrant:~$ gzip -t /tmp/new/test.gz
 vagrant@vagrant:~$ echo $?
 0
-
+``` 
 
 16. Сделано
-
-vagrant@vagrant:~$ sudo pvmove /dev/md1 /dev/md0
+``` vagrant@vagrant:~$ sudo pvmove /dev/md1 /dev/md0
   /dev/md1: Moved: 12.00%
   /dev/md1: Moved: 100.00%
-
+``` 
 17. Сделано
-vagrant@vagrant:~$ sudo mdadm /dev/md0 -f /dev/sdb1
+``` vagrant@vagrant:~$ sudo mdadm /dev/md0 -f /dev/sdb1
 mdadm: set /dev/sdb1 faulty in /dev/md0
 vagrant@vagrant:~$ sudo mdadm -D /dev/md0
 /dev/md0:
@@ -203,37 +196,25 @@ Consistency Policy : resync
        1       8       33        1      active sync   /dev/sdc1
 
        0       8       17        -      faulty   /dev/sdb1
-
+``` 
 
 18. Сделано
-
-vagrant@vagrant:~$ dmesg | grep md/raid1
+``` vagrant@vagrant:~$ dmesg | grep md/raid1
 [ 3679.339812] md/raid1:md0: not clean -- starting background reconstruction
 [ 3679.339815] md/raid1:md0: active with 2 out of 2 mirrors
 [ 7452.639800] md/raid1:md0: Disk failure on sdb1, disabling device.
                md/raid1:md0: Operation continuing on 1 devices.
-
+``` 
 19. Сделано
-
-vagrant@vagrant:~$ gzip -t /tmp/new/test.gz
+``` vagrant@vagrant:~$ gzip -t /tmp/new/test.gz
 vagrant@vagrant:~$ echo $?
 0
-
+``` 
 
 20. Сделано
-
-PS E:\vagrantconfig> vagrant destroy
+``` PS E:\vagrantconfig> vagrant destroy
     default: Are you sure you want to destroy the 'default' VM? [y/N] y
 ==> default: Forcing shutdown of VM...
 ==> default: Destroying VM and associated drives...
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blo
+``` 
+
