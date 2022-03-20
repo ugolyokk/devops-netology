@@ -5,6 +5,11 @@
 2. Не могут т.к имеют один Inode. Все изменения в правах на файле распространяются и на все хардлинки
 
 3.  Сделано
+ ``` PS E:\vagrantconfig> vagrant destroy
+    default: Are you sure you want to destroy the 'default' VM? [y/N] y
+==> default: Forcing shutdown of VM...
+==> default: Destroying VM and associated drives...
+``` 
 
 4. Сделано
 ``` Disk /dev/sdb: 2.51 GiB, 2684354560 bytes, 5242880 sectors
