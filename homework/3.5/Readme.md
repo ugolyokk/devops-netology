@@ -6,93 +6,92 @@
 
 3.  Сделано
 
-4.  Сделано
-> Disk /dev/sdb: 2.51 GiB, 2684354560 bytes, 5242880 sectors </br>
-Disk model: VBOX HARDDISK </br>
-Units: sectors of 1 * 512 = 512 bytes </br>
-Sector size (logical/physical): 512 bytes / 512 bytes </br>
-I/O size (minimum/optimal): 512 bytes / 512 bytes </br>
-Disklabel type: gpt </br>
-Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148 </br>
+4. Сделано
+``` Disk /dev/sdb: 2.51 GiB, 2684354560 bytes, 5242880 sectors
+Disk model: VBOX HARDDISK
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148
 
-> Device       Start     End Sectors  Size Type </br>
-/dev/sdb1     2048 4196351 4194304    2G Linux filesystem </br>
-/dev/sdb2  4196352 5242846 1046495  511M Linux filesystem </br>
-
+Device       Start     End Sectors  Size Type
+/dev/sdb1     2048 4196351 4194304    2G Linux filesystem
+/dev/sdb2  4196352 5242846 1046495  511M Linux filesystem
+```
 
 5. Сделано
-> vagrant@vagrant:~$ sudo sfdisk -d /dev/sdb | sudo sfdisk /dev/sdc </br>
-Checking that no-one is using this disk right now ... OK </br>
+vagrant@vagrant:~$ sudo sfdisk -d /dev/sdb | sudo sfdisk /dev/sdc
+Checking that no-one is using this disk right now ... OK
 
-> Disk /dev/sdc: 2.51 GiB, 2684354560 bytes, 5242880 sectors </br>
-Disk model: VBOX HARDDISK </br>
-Units: sectors of 1 * 512 = 512 bytes </br>
-Sector size (logical/physical): 512 bytes / 512 bytes </br>
-I/O size (minimum/optimal): 512 bytes / 512 bytes </br>
-Disklabel type: gpt </br>
-Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148 </br>
+Disk /dev/sdc: 2.51 GiB, 2684354560 bytes, 5242880 sectors
+Disk model: VBOX HARDDISK
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148
 
-> Old situation: </br>
+Old situation:
 
-> \>>> Script header accepted. </br>
-\>>> Script header accepted. </br>
-\>>> Script header accepted. </br>
-\>>> Script header accepted. </br>
-\>>> Script header accepted. </br>
-\>>> Script header accepted. </br>
-\>>> Created a new GPT disklabel (GUID: 90AE81C2-B01A-E744-BA92-0760A2591148). </br>
-/dev/sdc1: Created a new partition 1 of type 'Linux filesystem' and of size 2 GiB. </br>
-/dev/sdc2: Created a new partition 2 of type 'Linux filesystem' and of size 511 MiB. </br>
-/dev/sdc3: Done. </br>
+>>> Script header accepted.
+>>> Script header accepted.
+>>> Script header accepted.
+>>> Script header accepted.
+>>> Script header accepted.
+>>> Script header accepted.
+>>> Created a new GPT disklabel (GUID: 90AE81C2-B01A-E744-BA92-0760A2591148).
+/dev/sdc1: Created a new partition 1 of type 'Linux filesystem' and of size 2 GiB.
+/dev/sdc2: Created a new partition 2 of type 'Linux filesystem' and of size 511 MiB.
+/dev/sdc3: Done.
+New situation:
+Disklabel type: gpt
+Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148
 
-> New situation: </br>
-Disklabel type: gpt </br>
-Disk identifier: 90AE81C2-B01A-E744-BA92-0760A2591148 </br>
+Device       Start     End Sectors  Size Type
+/dev/sdc1     2048 4196351 4194304    2G Linux filesystem
+/dev/sdc2  4196352 5242846 1046495  511M Linux filesystem
 
-> Device       Start     End Sectors  Size Type </br>
-/dev/sdc1     2048 4196351 4194304    2G Linux filesystem </br>
-/dev/sdc2  4196352 5242846 1046495  511M Linux filesystem </br>
-
-> The partition table has been altered. </br>
-Calling ioctl() to re-read partition table. </br>
-Syncing disks. </br>
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
 
 6. Сделано
-> vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md0 -l 1 -n 2 /dev/sdb1 /dev/sdc1 </br>
-mdadm: Note: this array has metadata at the start and </br>
-    may not be suitable as a boot device.  If you plan to </br>
-    store '/boot' on this device please ensure that </br>
-    your boot-loader understands md/v1.x metadata, or use </br>
-    --metadata=0.90 </br>
-mdadm: size set to 2094080K </br>
-Continue creating array? y </br>
-mdadm: Defaulting to version 1.2 metadata </br>
-mdadm: array /dev/md0 started. </br>
+vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md0 -l 1 -n 2 /dev/sdb1 /dev/sdc1
+mdadm: Note: this array has metadata at the start and
+    may not be suitable as a boot device.  If you plan to
+    store '/boot' on this device please ensure that
+    your boot-loader understands md/v1.x metadata, or use
+    --metadata=0.90
+mdadm: size set to 2094080K
+Continue creating array? y
+mdadm: Defaulting to version 1.2 metadata
+mdadm: array /dev/md0 started.
 
 
 7. Сделано
-> vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md1 -l 0 -n 2 /dev/sdb2 /dev/sdc2 </br>
-mdadm: chunk size defaults to 512K </br>
-mdadm: Defaulting to version 1.2 metadata </br>
-mdadm: array /dev/md1 started. </br>
+vagrant@vagrant:~$ sudo mdadm --create --verbose /dev/md1 -l 0 -n 2 /dev/sdb2 /dev/sdc2
+mdadm: chunk size defaults to 512K
+mdadm: Defaulting to version 1.2 metadata
+mdadm: array /dev/md1 started.
 
 8. Сделано
-> vagrant@vagrant:~$ sudo pvcreate /dev/md0 </br>
-  Physical volume "/dev/md0" successfully created. </br>
-vagrant@vagrant:~$ sudo pvcreate /dev/md1 </br>
-  Physical volume "/dev/md1" successfully created. </br>
+vagrant@vagrant:~$ sudo pvcreate /dev/md0
+  Physical volume "/dev/md0" successfully created.
+vagrant@vagrant:~$ sudo pvcreate /dev/md1
+  Physical volume "/dev/md1" successfully created.
 
 9. Сделано
 
-> vagrant@vagrant:~$ sudo vgcreate vg1 /dev/md0 /dev/md1 </br>
-  Volume group "vg1" successfully created </br>
+vagrant@vagrant:~$ sudo vgcreate vg1 /dev/md0 /dev/md1
+  Volume group "vg1" successfully created
 
- > vagrant@vagrant:~$ sudo vgs </br>
+vagrant@vagrant:~$ sudo vgs
   VG        #PV #LV #SN Attr   VSize   VFree
   ubuntu-vg   1   1   0 wz--n- <63.00g <31.50g
   vg1         2   1   0 wz--n-  <2.99g   2.89g
 
-10.
+10. Сделано
 vagrant@vagrant:~$ sudo lvcreate -n lv1 -L 100M vg1 /dev/md1
   Logical volume "lv1" created.
 
@@ -101,7 +100,7 @@ vagrant@vagrant:~$ sudo lvs
   ubuntu-lv ubuntu-vg -wi-ao----  31.50g
   lv1       vg1       -wi-a----- 100.00m
 
-11.
+11. Сделано
 
 vagrant@vagrant:~$ sudo mkfs.ext4 /dev/vg1/lv1
 mke2fs 1.45.5 (07-Jan-2020)
@@ -113,10 +112,10 @@ Creating journal (1024 blocks): done
 Writing superblocks and filesystem accounting information: done
 
 
-12.
+12. Сделано
 vagrant@vagrant:~$ sudo mount /dev/vg1/lv1 /tmp/new/
 
-13
+13. Сделано
 
 
 vagrant@vagrant:~$ sudo wget http://mirror.yandex.ru/ubuntu/ls-lR.gz -O /tmp/new/test.gz
@@ -131,7 +130,7 @@ Saving to: ‘/tmp/new/test.gz’
 
 2022-03-20 18:44:16 (6.91 MB/s) - ‘/tmp/new/test.gz’ saved [22343231/22343231]
 
-14
+14. Сделано
 
 vagrant@vagrant:~$ lsblk
 NAME                      MAJ:MIN RM  SIZE RO TYPE  MOUNTPOINT
@@ -159,20 +158,20 @@ sdc                         8:32   0  2.5G  0 disk
   └─md1                     9:1    0 1017M  0 raid0
     └─vg1-lv1             253:1    0  100M  0 lvm   /tmp/new
 
-15
+15. Сделано
 
 vagrant@vagrant:~$ gzip -t /tmp/new/test.gz
 vagrant@vagrant:~$ echo $?
 0
 
 
-16
+16. Сделано
 
 vagrant@vagrant:~$ sudo pvmove /dev/md1 /dev/md0
   /dev/md1: Moved: 12.00%
   /dev/md1: Moved: 100.00%
 
-17
+17. Сделано
 vagrant@vagrant:~$ sudo mdadm /dev/md0 -f /dev/sdb1
 mdadm: set /dev/sdb1 faulty in /dev/md0
 vagrant@vagrant:~$ sudo mdadm -D /dev/md0
@@ -206,7 +205,7 @@ Consistency Policy : resync
        0       8       17        -      faulty   /dev/sdb1
 
 
-18
+18. Сделано
 
 vagrant@vagrant:~$ dmesg | grep md/raid1
 [ 3679.339812] md/raid1:md0: not clean -- starting background reconstruction
@@ -214,16 +213,27 @@ vagrant@vagrant:~$ dmesg | grep md/raid1
 [ 7452.639800] md/raid1:md0: Disk failure on sdb1, disabling device.
                md/raid1:md0: Operation continuing on 1 devices.
 
-19
+19. Сделано
 
 vagrant@vagrant:~$ gzip -t /tmp/new/test.gz
 vagrant@vagrant:~$ echo $?
 0
 
 
-20
+20. Сделано
 
 PS E:\vagrantconfig> vagrant destroy
     default: Are you sure you want to destroy the 'default' VM? [y/N] y
 ==> default: Forcing shutdown of VM...
 ==> default: Destroying VM and associated drives...
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blo
