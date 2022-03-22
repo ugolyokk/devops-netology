@@ -2,7 +2,24 @@
 
 2. База находится в /usr/share/misc/magic.mgc
 
-3. Не получается имитировать ситуацию. При удалении текстового файла в который пишет nano он просто создается заново при следующей записи
+3. 
+```bash
+vagrant@vagrant:~$ sudo lsof | grep deleted
+ping      14189                         vagrant    1w      REG              253,0    12803    1048595 /home/vagrant/test (deleted)
+
+vagrant@vagrant:~$ sudo ls -l /proc/14189/fd
+total 0
+lrwx------ 1 root root 64 Mar 22 19:44 0 -> /dev/pts/0
+l-wx------ 1 root root 64 Mar 22 19:44 1 -> '/home/vagrant/test (deleted)'
+lrwx------ 1 root root 64 Mar 22 19:44 2 -> /dev/pts/0
+lrwx------ 1 root root 64 Mar 22 19:44 3 -> 'socket:[46048]'
+lrwx------ 1 root root 64 Mar 22 19:44 4 -> 'socket:[46049]'
+
+vagrant@vagrant:~$ sudo -i
+root@vagrant:~# cat /dev/null > /proc/14189/fd/1
+ ```
+
+
 
 4. Занимают только таблицу процессов
 
