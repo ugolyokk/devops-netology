@@ -1,5 +1,5 @@
 
-1. Сделано
+1. 
 ```
 vagrant@vagrant:~$ telnet stackoverflow.com 80
 Trying 151.101.65.69...
@@ -22,10 +22,10 @@ location: https://stackoverflow.com/questions
 
 3. 5.18.144.188
 
-4. Z-Telecom
+4. Z-Telecom <br/>
     AS41733
     
-5. Сделано
+5. 
 ```
 vagrant@vagrant:~$ sudo traceroute -IAn 8.8.8.8
 traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
@@ -55,8 +55,58 @@ traceroute to 8.8.8.8 (8.8.8.8), 30 hops max, 60 byte packets
 24  * * *
 25  8.8.8.8 [AS15169]  8.958 ms  8.945 ms  9.987 ms
 ```
-6.
+6. Наибольшее время задержки на AS15169  74.125.244.181
+
+![image](https://user-images.githubusercontent.com/98211990/160445184-ea9cd86e-76c7-4997-8222-07539f2a2b69.png)
 
 
+7.
+```
+ vagrant@vagrant:~$ dig dns.google
+
+; <<>> DiG 9.16.1-Ubuntu <<>> dns.google
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 46556
+;; flags: qr rd ra; QUERY: 1, ANSWER: 2, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;dns.google.                    IN      A
+
+;; ANSWER SECTION:
+dns.google.             17      IN      A       8.8.4.4
+dns.google.             17      IN      A       8.8.8.8
+
+;; Query time: 2008 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Mon Mar 28 16:38:23 UTC 2022
+;; MSG SIZE  rcvd: 71
+```
+
+8.
+```
+vagrant@vagrant:~$ dig -x 8.8.4.4
+
+; <<>> DiG 9.16.1-Ubuntu <<>> -x 8.8.4.4
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 4736
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 65494
+;; QUESTION SECTION:
+;4.4.8.8.in-addr.arpa.          IN      PTR
+
+;; ANSWER SECTION:
+4.4.8.8.in-addr.arpa.   29951   IN      PTR     dns.google.
+
+;; Query time: 2004 msec
+;; SERVER: 127.0.0.53#53(127.0.0.53)
+;; WHEN: Mon Mar 28 16:49:24 UTC 2022
+;; MSG SIZE  rcvd: 73
+```
 
 
