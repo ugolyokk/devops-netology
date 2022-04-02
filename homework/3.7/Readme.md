@@ -6,10 +6,10 @@
     link/ether 08:00:27:b1:28:5d brd ff:ff:ff:ff:ff:ff
 ```
 
-2. ARP ip-neighbour
+2. Протокол ARP, команда ip-neighbour из набора утилит iproute2
 ```
 vagrant@vagrant:~$ ip neigh
 10.0.2.2 dev eth0 lladdr 52:54:00:12:35:02 REACHABLE
 10.0.2.3 dev eth0 lladdr 52:54:00:12:35:03 STALE
 ```
-3. VLAN 
+
