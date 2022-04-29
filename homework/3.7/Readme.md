@@ -1,12 +1,12 @@
 1.
-Для linux: ip link show
+Для linux: ```ip link show```
 ```
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
     link/ether 08:00:27:b1:28:5d brd ff:ff:ff:ff:ff:ff
 ```
-Для Windows: ipconfig /all
+Для Windows: ```ipconfig /all```
 ```
 C:\Users\vorbi>ipconfig /all
 
@@ -54,7 +54,7 @@ C:\Users\vorbi>ipconfig /all
 6. Используя диапазон 100.64.0.0 — 100.127.255.255/10 можно взять подсеть 100.64.0.0/26 которая будет содержать 62 хоста.
 
 
-7. Для Windows arp -a 
+7. Для Windows ```arp -a```
 ```
 C:\Users\vorbi>arp -a
 
@@ -72,14 +72,14 @@ C:\Users\vorbi>arp -a
   239.255.102.18        01-00-5e-7f-66-12     статический
   239.255.255.250       01-00-5e-7f-ff-fa     статический
 ```
-Для Linux arp
+Для Linux ```arp```
 ```
 vagrant@vagrant:~$ arp
 Address                  HWtype  HWaddress           Flags Mask            Iface
 _gateway                 ether   52:54:00:12:35:02   C                     eth0
 10.0.2.3                 ether   52:54:00:12:35:03   C                     eth0
 ```
-Удалить одну запись можно с помощью arp -d
+Удалить одну запись можно с помощью ```arp -d```
 ```
 C:\Windows\system32>arp -d 224.0.0.2
 
@@ -98,5 +98,25 @@ C:\Windows\system32>arp -a
   239.255.102.18        01-00-5e-7f-66-12     статический
   239.255.255.250       01-00-5e-7f-ff-fa     статический
 ```
-Удалить все записи можно используя в Windows netsh interface ip delete arpcache
-В Linux ip neigh flush all
+Удалить все записи можно используя в Windows ```netsh interface ip delete arpcache```
+В Linux ```ip neigh flush all```
+```
+C:\Windows\system32>netsh interface ip delete arpcache
+ОК.
+
+
+C:\Windows\system32>arp -a
+
+Интерфейс: 192.168.56.1 --- 0x13
+  адрес в Интернете      Физический адрес      Тип
+  192.168.56.255        ff-ff-ff-ff-ff-ff     статический
+  224.0.0.251           01-00-5e-00-00-fb     статический
+  224.0.0.252           01-00-5e-00-00-fc     статический
+
+Интерфейс: 192.168.0.27 --- 0x15
+  адрес в Интернете      Физический адрес      Тип
+  192.168.0.1           fc-8b-97-46-c6-f5     динамический
+  192.168.0.255         ff-ff-ff-ff-ff-ff     статический
+  224.0.0.251           01-00-5e-00-00-fb     статический
+  224.0.0.252           01-00-5e-00-00-fc     статический
+  ```
