@@ -41,7 +41,40 @@ C:\Users\vorbi>ipconfig /all
 2. LLDP - протокол канального уровня, который позволяет сетевым устройствам анонсировать в сеть информацию о себе и о своих возможностях, а также собирать эту информацию о соседних устройствах
 Команда ``` lldpctl ``` должна показать устройства в сети на которых включен LLDP. К сожалению у меня таких нет.
 
-3. Vlan
+3. Vlan. Создаю Vlan 2 на интерфейс eth0 c адресом 192.168.0.2/24
+```
+vagrant@vagrant:~$ sudo modprobe 8021q
+vagrant@vagrant:~$ sudo vconfig add eth0 2
+vagrant@vagrant:~$ sudo ifconfig eth0.2 192.168.0.2/24 up
+vagrant@vagrant:~$ ifconfig
+eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 10.0.2.15  netmask 255.255.255.0  broadcast 10.0.2.255
+        inet6 fe80::a00:27ff:feb1:285d  prefixlen 64  scopeid 0x20<link>
+        ether 08:00:27:b1:28:5d  txqueuelen 1000  (Ethernet)
+        RX packets 1482  bytes 334373 (334.3 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1261  bytes 155785 (155.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+eth0.2: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.0.2  netmask 255.255.255.0  broadcast 192.168.0.255
+        inet6 fe80::a00:27ff:feb1:285d  prefixlen 64  scopeid 0x20<link>
+        ether 08:00:27:b1:28:5d  txqueuelen 1000  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 12  bytes 936 (936.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 30  bytes 2648 (2.6 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 30  bytes 2648 (2.6 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+```
 
 4.
 
