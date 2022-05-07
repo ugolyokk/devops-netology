@@ -61,6 +61,17 @@ default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100
 10.0.2.2 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100
 192.168.56.0/24 via 10.0.2.1 dev eth0
 
-
-
 ```
+### 3. Проверьте открытые TCP порты в Ubuntu, какие протоколы и приложения используют эти порты? Приведите несколько примеров
+```
+root@vagrant:~# nmap localhost
+Starting Nmap 7.80 ( https://nmap.org ) at 2022-05-07 17:20 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000050s latency).
+Not shown: 999 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+
+Nmap done: 1 IP address (1 host up) scanned in 0.14 seconds
+```
+открыт один tcp порт 22, который используется для ssh подключений
