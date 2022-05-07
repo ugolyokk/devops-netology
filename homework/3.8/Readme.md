@@ -17,7 +17,7 @@ route-views>show bgp 5.18.144.189/32
 % Network not in table
 ```
 ### 2. Создайте dummy0 интерфейс в Ubuntu. Добавьте несколько статических маршрутов. Проверьте таблицу маршрутизации
-
+#### Создаю dummy
 ```
 root@vagrant:~# ip link add dummy0 type dummy
 root@vagrant:~# ip addr add 192.168.0.20/24 dev dummy0
@@ -48,4 +48,19 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 96  bytes 7008 (7.0 KB)
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+#### Добавляю маршруты, смотрим таблицу маршрутизации
+```
+root@vagrant:~# ip route add 8.8.4.4/32 via 10.0.2.1
+root@vagrant:~# ip route add 192.168.56.0/24 via 10.0.2.1
+root@vagrant:~# ip route show
+default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100
+8.8.4.4 via 10.0.2.1 dev eth0
+10.0.2.0/24 dev eth0 proto kernel scope link src 10.0.2.15
+10.0.2.0/24 dev dummy0 proto kernel scope link src 10.0.2.16
+10.0.2.2 dev eth0 proto dhcp scope link src 10.0.2.15 metric 100
+192.168.56.0/24 via 10.0.2.1 dev eth0
+
+
+
 ```
