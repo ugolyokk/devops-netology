@@ -63,6 +63,8 @@ default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100
 
 ```
 ### 3. Проверьте открытые TCP порты в Ubuntu, какие протоколы и приложения используют эти порты? Приведите несколько примеров
+
+#### TCP
 ```
 root@vagrant:~# nmap localhost
 Starting Nmap 7.80 ( https://nmap.org ) at 2022-05-07 17:20 UTC
@@ -75,3 +77,14 @@ PORT   STATE SERVICE
 Nmap done: 1 IP address (1 host up) scanned in 0.14 seconds
 ```
 открыт один tcp порт 22, который используется для ssh подключений
+#### UDP
+```
+root@vagrant:~# nmap localhost -sU
+Starting Nmap 7.80 ( https://nmap.org ) at 2022-05-07 17:27 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000070s latency).
+All 1000 scanned ports on localhost (127.0.0.1) are closed
+
+Nmap done: 1 IP address (1 host up) scanned in 0.12 seconds
+```
+открытых udp портов нет
