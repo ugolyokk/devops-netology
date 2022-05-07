@@ -65,6 +65,7 @@ default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100
 ### 3. Проверьте открытые TCP порты в Ubuntu, какие протоколы и приложения используют эти порты? Приведите несколько примеров
 
 #### TCP
+Используется в таких протоколах, как HTTP, FTP, SMTP и Telnet
 ```
 root@vagrant:~# nmap localhost
 Starting Nmap 7.80 ( https://nmap.org ) at 2022-05-07 17:20 UTC
@@ -78,6 +79,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.14 seconds
 ```
 открыт один tcp порт 22, который используется для ssh подключений
 #### UDP
+Используется в DNS, DHCP и других, где не требуется гарантированная доставка пакетов
 ```
 root@vagrant:~# nmap localhost -sU
 Starting Nmap 7.80 ( https://nmap.org ) at 2022-05-07 17:27 UTC
@@ -88,6 +90,8 @@ All 1000 scanned ports on localhost (127.0.0.1) are closed
 Nmap done: 1 IP address (1 host up) scanned in 0.12 seconds
 ```
 открытых udp портов нет
+
+
 
 ### 5. Используя diagrams.net, создайте L3 диаграмму вашей домашней сети или любой другой сети, с которой вы работали.
 ![image](https://user-images.githubusercontent.com/98211990/167265896-174a90c3-11b6-40c8-a682-37e1945294b0.png)
