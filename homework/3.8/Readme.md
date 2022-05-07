@@ -94,5 +94,6 @@ Nmap done: 1 IP address (1 host up) scanned in 0.12 seconds
 
 
 ### 5. Используя diagrams.net, создайте L3 диаграмму вашей домашней сети или любой другой сети, с которой вы работали.
+#### Домашня сеть
 ![image](https://user-images.githubusercontent.com/98211990/167265896-174a90c3-11b6-40c8-a682-37e1945294b0.png)
 
