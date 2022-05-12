@@ -377,3 +377,16 @@ More information can be found at https://github.com/chef/bento
 Last login: Thu May 12 12:00:08 2022 from 192.168.0.27
 vorbi@vagrant:~$
 ```
+### 7. Соберите дамп трафика утилитой tcpdump в формате pcap, 100 пакетов. Откройте файл pcap в Wireshark.
+#### Сделано 
+  Собираю дамп с интерфейса eth0 и записываю в файл dump.pcap
+  ```
+vagrant@vagrant:~$ sudo tcpdump -i eth0 -c 100 -w dump.pcap
+tcpdump: listening on eth0, link-type EN10MB (Ethernet), capture size 262144 bytes
+100 packets captured
+104 packets received by filter
+0 packets dropped by kernel
+  ```
+  Файл дампа в Wireshark
+  
+  ![image](https://user-images.githubusercontent.com/98211990/168073167-87daf1c7-9a20-4b5d-b512-280ee9d5111a.png)
