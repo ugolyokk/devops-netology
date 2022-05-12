@@ -300,3 +300,21 @@ TLSv1.3 (no server order, thus listed by strength)
  Done 2022-05-12 10:45:49 [ 133s] -->> 188.114.99.148:443 (www.netology.ru) <<--
 ```
   </details>
+  
+  
+ ### 5. Установите на Ubuntu ssh сервер, сгенерируйте новый приватный ключ. Скопируйте свой публичный ключ на другой сервер. Подключитесь к серверу по SSH-ключу
+  Сгенерировал ключ
+  ```
+  C:\Users\vorbi>ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (C:\Users\vorbi/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in C:\Users\vorbi/.ssh/id_rsa.
+Your public key has been saved in C:\Users\vorbi/.ssh/id_rsa.pub.
+  ```
+  Скопировал ключ на сервер Ubuntu
+  ```
+ PS C:\Windows\system32> type $env:USERPROFILE\.ssh\id_rsa.pub | ssh 192.168.0.57 "cat >> .ssh/authorized_keys"
+ vorbi@192.168.0.57's password:
+  ```
