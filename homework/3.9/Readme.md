@@ -11,7 +11,7 @@
 ![image](https://user-images.githubusercontent.com/98211990/168051616-be01aa3a-17d9-4231-aa29-2a3e101aced6.png)
 
 ### 4. Проверьте на TLS уязвимости произвольный сайт в интернете (кроме сайтов МВД, ФСБ, МинОбр, НацБанк, РосКосмос, РосАтом, РосНАНО и любых госкомпаний, объектов КИИ, ВПК ... и тому подобное)
-### Сделано. Использовал https://github.com/drwetter/testssl.sh
+#### Сделано. Использовал https://github.com/drwetter/testssl.sh
 
 <details>
   <summary>Осторожно большой вывод</summary>
@@ -303,6 +303,7 @@ TLSv1.3 (no server order, thus listed by strength)
   
   
  ### 5. Установите на Ubuntu ssh сервер, сгенерируйте новый приватный ключ. Скопируйте свой публичный ключ на другой сервер. Подключитесь к серверу по SSH-ключу
+  #### Сделано
   Сгенерировал ключ
   ```
   C:\Users\vorbi>ssh-keygen
@@ -341,4 +342,17 @@ More information can be found at https://github.com/chef/bento
 Last login: Thu May 12 11:27:03 2022 from 192.168.0.27
 vorbi@vagrant:~$
   ```
+  
+  ### 6. Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента, так чтобы вход на удаленный сервер осуществлялся по имени сервера.
+  #### Сделано
+  Config
+  
+  ```
+  Host vagrant
+HostName 192.168.0.57
+User vorbi
+Port 22 
+IdentityFile C:\Users\vorbi\.ssh\id_rsa
+  ```
+
 
