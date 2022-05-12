@@ -345,7 +345,7 @@ vorbi@vagrant:~$
   
   ### 6. Переименуйте файлы ключей из задания 5. Настройте файл конфигурации SSH клиента, так чтобы вход на удаленный сервер осуществлялся по имени сервера.
   #### Сделано
-  Config
+ Конфиг:
   
   ```
   Host vagrant
@@ -354,5 +354,26 @@ User vorbi
 Port 22 
 IdentityFile C:\Users\vorbi\.ssh\id_rsa
   ```
+Результат:
+```
+  PS C:\Users\vorbi\.ssh> ssh vagrant
+Enter passphrase for key 'C:\Users\vorbi\.ssh\id_rsa':
+Welcome to Ubuntu 20.04.3 LTS (GNU/Linux 5.4.0-91-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Thu 12 May 2022 12:00:24 PM UTC
+
+  System load:  0.0                Processes:             138
+  Usage of /:   13.7% of 30.88GB   Users logged in:       2
+  Memory usage: 25%                IPv4 address for eth0: 192.168.0.57
+  Swap usage:   0%
 
 
+This system is built by the Bento project by Chef Software
+More information can be found at https://github.com/chef/bento
+Last login: Thu May 12 12:00:08 2022 from 192.168.0.27
+vorbi@vagrant:~$
+```
