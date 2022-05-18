@@ -74,7 +74,23 @@ done
 
 ### Ваш скрипт:
 ```bash
-???
+#!/bin/bash
+hosts=(192.168.0.1 173.194.222.113 87.250.250.242)
+error=0
+for host in ${hosts[@]}
+do
+        if [ "$error" -eq "0" ]
+        then
+                for ((i=0; i < 5; i++))
+                do
+                        nc -zvw3 $host 80 2>>result.log
+                        error=$?
+                        done
+        else
+                echo $host>>error.log
+                break 
+        fi
+done
 ```
 
 ## Дополнительное задание (со звездочкой*) - необязательно к выполнению
