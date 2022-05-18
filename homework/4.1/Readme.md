@@ -77,20 +77,24 @@ done
 #!/bin/bash
 hosts=(192.168.0.1 173.194.222.113 87.250.250.242)
 error=0
-for host in ${hosts[@]}
+while (($error==0))
 do
-        if [ "$error" -eq "0" ]
-        then
+        for host in ${hosts[@]}
+        do
                 for ((i=0; i < 5; i++))
                 do
                         nc -zvw3 $host 80 2>>result.log
                         error=$?
-                        done
-        else
-                echo $host>>error.log
-                break 
-        fi
+                        if [ "$error" -ne 0 ]
+                        then
+                                echo $host>>error.log
+                                exit
+                        fi
+                done 
+
+        done
 done
+
 ```
 
 ## Дополнительное задание (со звездочкой*) - необязательно к выполнению
