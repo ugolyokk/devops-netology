@@ -19,7 +19,9 @@ Routing entry for 5.18.144.0/24
       Route tag 6939
       MPLS label: none
 ```
-
+<details>
+  <summary> show bgp 5.18.144.189 Осторожно большой вывод</summary>
+  
 ```
 route-views>show bgp 5.18.144.189
 BGP routing table entry for 5.18.144.0/24, version 311625193
@@ -183,6 +185,8 @@ Paths: (23 available, best #18, table default)
       path 7FE0F88AB420 RPKI State not found
       rx pathid: 0, tx pathid: 0
 ```
+   </details>
+   
 ### 2. Создайте dummy0 интерфейс в Ubuntu. Добавьте несколько статических маршрутов. Проверьте таблицу маршрутизации
 #### Создаю dummy
 ```
@@ -245,6 +249,8 @@ PORT   STATE SERVICE
 Nmap done: 1 IP address (1 host up) scanned in 0.14 seconds
 ```
 открыт один tcp порт 22, который используется для ssh подключений
+### 4. Проверьте используемые UDP сокеты в Ubuntu, какие протоколы и приложения используют эти порты?
+
 #### UDP
 Используется в DNS, DHCP и других, где не требуется гарантированная доставка пакетов
 ```
