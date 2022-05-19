@@ -84,11 +84,33 @@ for result in result_os.split('\n'):
 ```
 
 ### Вывод скрипта при запуске при тестировании:
+- git status:
 ```
-ugolyokk@ugolyokk-ubuntu:~/netology/devops-netology/python$ ./task3.py ~/netology/devops-netology/python
-/home/ugolyokk/netology/devops-netology/python task2.py
-/home/ugolyokk/netology/devops-netology/python task3.1.py
-/home/ugolyokk/netology/devops-netology/python task3.py
+ugolyokk@ugolyokk-ubuntu:~/netology/devops-netology/python$ git status --porcelain 
+ M python/task2.py
+AM python/task3.1.py
+ M python/task3.py
+AM python/task4.py
+AM test/1.log
+AM test/2.txt
+AM test/3.bat
+AM test2/test3/1.sh
+AM test2/test3/2.jar
+```
+- Вывод скрипта:
+```
+ugolyokk@ugolyokk-ubuntu:~/netology/devops-netology/python$ ./task3.py ~/netology/devops-netology/python/
+/home/ugolyokk/netology/devops-netology/python/ task2.py
+/home/ugolyokk/netology/devops-netology/python/ task3.1.py
+/home/ugolyokk/netology/devops-netology/python/ task3.py
+/home/ugolyokk/netology/devops-netology/python/ task4.py
+ugolyokk@ugolyokk-ubuntu:~/netology/devops-netology/python$ ./task3.py ~/netology/devops-netology/test
+/home/ugolyokk/netology/devops-netology/test 1.log
+/home/ugolyokk/netology/devops-netology/test 2.txt
+/home/ugolyokk/netology/devops-netology/test 3.bat
+ugolyokk@ugolyokk-ubuntu:~/netology/devops-netology/python$ ./task3.py ~/netology/devops-netology/test2/test3/
+/home/ugolyokk/netology/devops-netology/test2/test3/ 1.sh
+/home/ugolyokk/netology/devops-netology/test2/test3/ 2.jar
 
 ```
 
