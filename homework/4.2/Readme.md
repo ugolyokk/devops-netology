@@ -94,11 +94,31 @@ ugolyokk@ugolyokk-ubuntu:~/netology/devops-netology/python$ ./task3.py ~/netolog
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+import socket
+import time
+
+hosts = {'drive.google.com':0, 'mail.google.com':0, 'google.com':0}
+while 1==1:
+    for host in hosts:
+        host_ip = socket.gethostbyname(host)
+        if hosts[host] != host_ip:
+            print('[ERROR]', host, 'IP mismatch:', host_ip)
+        else:
+            print(host, '-', host_ip)
+        hosts[host] = host_ip
+    time.sleep(5)
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+ugolyokk@ugolyokk-ubuntu:~/netology/devops-netology/python$ /home/ugolyokk/netology/devops-netology/python/task4.py
+[ERROR] drive.google.com IP mismatch: 173.194.222.194
+[ERROR] mail.google.com IP mismatch: 64.233.161.83
+[ERROR] google.com IP mismatch: 64.233.162.102
+drive.google.com - 173.194.222.194
+mail.google.com - 64.233.161.83
+google.com - 64.233.162.102
+
 ```
 
