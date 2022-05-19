@@ -66,12 +66,27 @@ task3.py
 
 ### Ваш скрипт:
 ```python
-???
+#!/usr/bin/env python3
+
+import os
+import sys
+
+repo = sys.argv[1]
+bash_command = ['git status {}'.format(repo)]
+result_os = os.popen(' && '.join(bash_command)).read()
+for result in result_os.split('\n'):
+    if result.find('modified') != -1:
+        prepare_result = result.replace('\tmodified:   ', '')
+        print('{} {}'.format(repo, prepare_result))
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+ugolyokk@ugolyokk-ubuntu:~/netology/devops-netology/python$ ./task3.py ~/netology/devops-netology/python
+/home/ugolyokk/netology/devops-netology/python task2.py
+/home/ugolyokk/netology/devops-netology/python task3.1.py
+/home/ugolyokk/netology/devops-netology/python task3.py
+
 ```
 
 ## Обязательная задача 4
