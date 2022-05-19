@@ -69,6 +69,7 @@ task3.py
 #!/usr/bin/env python3
 
 import os
+import re
 import sys
 
 repo = sys.argv[1]
@@ -77,6 +78,7 @@ result_os = os.popen(' && '.join(bash_command)).read()
 for result in result_os.split('\n'):
     if result.find('modified') != -1:
         prepare_result = result.replace('\tmodified:   ', '')
+        prepare_result = re.sub(r'.*\/', '', prepare_result, )
         print('{} {}'.format(repo, prepare_result))
 ```
 
