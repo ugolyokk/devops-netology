@@ -77,9 +77,9 @@ bash_command = ['git status {}'.format(repo)]
 result_os = os.popen(' && '.join(bash_command)).read()
 for result in result_os.split('\n'):
     if result.find('modified') != -1:
-        prepare_result = result.replace('\tmodified:   ', '')
-        prepare_result = re.sub(r'.*\/', '', prepare_result, )
+        prepare_result = re.sub(r'.*\/', '', result.replace('\tmodified:   ', '')) #добавил регулярное вырожение, чтобы удалить лишнее при вызове в другую директорию
         print('{} {}'.format(repo, prepare_result))
+
 ```
 
 ### Вывод скрипта при запуске при тестировании:
