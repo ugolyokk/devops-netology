@@ -103,7 +103,7 @@ while 1==1:
     for host in hosts:
         host_ip = socket.gethostbyname(host)
         if hosts[host] != host_ip:
-            print('[ERROR]', host, 'IP mismatch:', host_ip)
+            print('[ERROR]', host, 'IP mismatch:', hosts[host], '---->', host_ip)
         else:
             print(host, '-', host_ip)
         hosts[host] = host_ip
@@ -113,12 +113,14 @@ while 1==1:
 ### Вывод скрипта при запуске при тестировании:
 ```
 ugolyokk@ugolyokk-ubuntu:~/netology/devops-netology/python$ /home/ugolyokk/netology/devops-netology/python/task4.py
-[ERROR] drive.google.com IP mismatch: 173.194.222.194
-[ERROR] mail.google.com IP mismatch: 64.233.161.83
-[ERROR] google.com IP mismatch: 64.233.162.102
+[ERROR] drive.google.com IP mismatch: 0 ----> 173.194.222.194
+[ERROR] mail.google.com IP mismatch: 0 ----> 64.233.161.83
+[ERROR] google.com IP mismatch: 0 ----> 64.233.162.113
 drive.google.com - 173.194.222.194
-mail.google.com - 64.233.161.83
-google.com - 64.233.162.102
-
+[ERROR] mail.google.com IP mismatch: 64.233.161.83 ----> 64.233.161.18
+[ERROR] google.com IP mismatch: 64.233.162.113 ----> 64.233.162.138
+drive.google.com - 173.194.222.194
+mail.google.com - 64.233.161.18
+google.com - 64.233.162.138
 ```
 
