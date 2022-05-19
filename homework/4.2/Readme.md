@@ -37,13 +37,28 @@ for result in result_os.split('\n'):
 ```
 
 ### Ваш скрипт:
+- Удалена неиспользуемая переменная `is_change = False`
+- Удалено `break` прерывание цикла при первом нахождении модифицированного файла
 ```python
-???
+#!/usr/bin/env python3
+
+import os
+
+bash_command = ["cd ~/netology/devops-netology/python", "git status"]
+result_os = os.popen(' && '.join(bash_command)).read()
+for result in result_os.split('\n'):
+    if result.find('modified') != -1:
+        prepare_result = result.replace('\tmodified:   ', '')
+        print(prepare_result)
+
 ```
 
 ### Вывод скрипта при запуске при тестировании:
 ```
-???
+ugolyokk@ugolyokk-ubuntu:~/netology/devops-netology/python$ /home/ugolyokk/netology/devops-netology/python/task2.py
+task2.py
+task3.py
+
 ```
 
 ## Обязательная задача 3
