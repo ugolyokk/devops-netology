@@ -20,7 +20,7 @@
 ### Исправленный JSON: 
 ip в кавычки, запятая между блоками
 ```
- { "info" : "Sample JSON output from our service\t",
+    { "info" : "Sample JSON output from our service\t",
         "elements" :[
             { "name" : "first",
             "type" : "server",
