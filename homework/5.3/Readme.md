@@ -65,9 +65,7 @@ https://hub.docker.com/r/ugolyokk/devops-netology <br />
 - Подключитесь во второй контейнер и отобразите листинг и содержание файлов в ```/data``` контейнера.
 
 ## Ответ:
-### Запускаю контейнеры
-![Screenshot_20220808-175240_Termius](https://user-images.githubusercontent.com/98211990/183448674-8e0d551b-7db1-4859-800f-e18950263a6d.jpg)
-### Выполняю остальные необходимые действия
+### Выполняю необходимые действия
 ![Screenshot_20220808-175638_Termius](https://user-images.githubusercontent.com/98211990/183448832-45f6a4bc-0b08-4a5d-a3e4-3ac8a56b30ae.jpg)
 
 
