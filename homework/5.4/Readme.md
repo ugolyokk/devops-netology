@@ -28,6 +28,11 @@
 
 ## Задача 4
 
+Откройте web браузер, зайдите на страницу http://<внешний_ip_адрес_вашей_ВМ>:3000.
+Используйте для авторизации логин и пароль из ([.env-file](https://github.com/netology-group/virt-homeworks/blob/virt-11/05-virt-04-docker-compose/src/ansible/stack/.env)).
+Изучите доступный интерфейс, найдите в интерфейсе автоматически созданные docker-compose панели с графиками([dashboards](https://grafana.com/docs/grafana/latest/dashboards/use-dashboards/)).
+Подождите 5-10 минут, чтобы система мониторинга успела накопить данные.
+
 ## Ответ:
 ![image](https://user-images.githubusercontent.com/98211990/221879484-cfa35998-a395-47b3-b632-0b1cd1edd467.png)
 
