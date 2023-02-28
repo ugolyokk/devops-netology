@@ -23,7 +23,13 @@
 Для получения зачета вам необходимо предоставить вывод команды "docker ps" , все контейнеры, описанные в (docker-compose), должны быть в статусе "Up".
 
 ## Ответ:
-![image](https://user-images.githubusercontent.com/98211990/220453206-d2635cc4-fae4-4adc-9a54-1817fbb61bba.png)
+
+![image](https://user-images.githubusercontent.com/98211990/221878522-ccf95557-ed62-4bf9-a7af-30f6659ca2ea.png)
+
+## Задача 4
+
+## Ответ:
+![image](https://user-images.githubusercontent.com/98211990/221879484-cfa35998-a395-47b3-b632-0b1cd1edd467.png)
 
 
 
